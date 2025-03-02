@@ -1,0 +1,133 @@
+import java.util.Arrays;
+public class Main {
+    public static void main(String[] args) {
+        printThreeWords();
+        checkSumSign();
+        printColor();
+        compareNumbers();
+        System.out.println(isSumInRange(5, 5));
+        System.out.println(isSumInRange(10, 5));
+        System.out.println(isSumInRange(15, 10));
+        System.out.println(isSumInRange(1, 8));
+        checkNumber(5);
+        checkNumber(-3);
+        checkNumber(0);
+        System.out.println(isNegative(-5));
+        System.out.println(isNegative(3));
+        System.out.println(isNegative(0));
+        printString("I love you", 3);
+        printString("Hello, world!", 2);
+        System.out.println(isLeapYear(2024));
+        System.out.println(isLeapYear(1900));
+        System.out.println(isLeapYear(2000));
+        System.out.println(isLeapYear(2021));
+        int[] arr = {1,1,0,0,1,1,0,0};
+        for (int i = 0; i < arr.length; i++){
+            arr[i] = (arr[i]== 0) ? 1:0;
+        }
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+        int[] numder = new int[100];
+        for ( int i = 0; i < numder.length; i++) {
+            numder[i] = i + 1;
+        }
+        System.out.println(Arrays.toString(numder));
+        int[] k = {1, 5, 3, 2, 11, 4, 8, 9, 1};
+        for ( int i = 0; i < k.length; i++) {
+            if (k[i] < 6) {
+                k[i] *= 2;
+            }
+        }
+        System.out.println(Arrays.toString(k));
+        int size = 3;
+        int [] [] matrix = new int[size][size];
+        for (int i = 0; i< size; i++){
+            matrix[i][i]= 1;
+            matrix[i][size - 1 - i] = 1;
+        }
+        for (int[] row : matrix) {
+            System.out.println(Arrays.toString(row));
+        }
+        int[] z = createArray(10, 5);
+        System.out.println(Arrays.toString(z));
+    }
+
+    public static void printThreeWords() {
+        System.out.println("Orange");
+        System.out.println("Banana");
+        System.out.println("Apple");
+    }
+
+    public static void checkSumSign() {
+        int a = 5;
+        int b = -3;
+        int sum = a + b;
+        if (sum >= 0) {
+            System.out.println("Сумма положительная");
+        } else {
+            System.out.println("Сумма отрицательная");
+        }
+    }
+
+    public static void printColor() {
+        int value = 36;
+        if (value < 0) {
+            System.out.println("Красный");
+        } else if (value >= 0 && value <= 100) {
+            System.out.println("Желтый");
+        } else {
+            System.out.println("Зеленый");
+        }
+    }
+
+    public static void compareNumbers() {
+        int a = 23;
+        int b = 45;
+        if (a >= b) {
+            System.out.println("a >= b");
+        } else {
+            System.out.println("a < b");
+        }
+    }
+
+    public static boolean isSumInRange(int a, int b) {
+        int sum = a + b;
+        return sum >= 10 && sum <= 20;
+    }
+
+    public static void checkNumber(int number) {
+        if (number >= 0) {
+            System.out.println("Положительное число");
+        } else {
+            System.out.println("Отрицательное число");
+        }
+    }
+
+    public static boolean isNegative(int number) {
+        return number < 0;
+    }
+
+    public static void printString(String str, int count) {
+        for (int i = 0; i < count; i++) {
+            System.out.println(str);
+        }
+    }
+
+    public static boolean isLeapYear(int year) {
+        if (year % 4 == 0) {
+            if (year % 100 == 0) {
+                return year % 400 == 0;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public static int[] createArray(int len, int initialValue) {
+        int[] array = new int[len];
+        Arrays.fill(array, initialValue);
+        return array;
+    }
+}
