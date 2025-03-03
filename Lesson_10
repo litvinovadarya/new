@@ -1,0 +1,80 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class Product {
+    private String name;
+    private String productionDate;
+    private String manufacturer;
+    private String countryOfOrigin;
+    private double price;
+    private boolean isReserved;
+    public Product(String name, String productionDate, String manufacturer, String countryOfOrigin, double price, boolean isReserved) {
+        this.name = name;
+        this.productionDate = productionDate;
+        this.manufacturer = manufacturer;
+        this.countryOfOrigin = countryOfOrigin;
+        this.price = price;
+        this.isReserved = isReserved;
+    }
+    public void displayInfo() {
+        System.out.println("Название: " + name);
+        System.out.println("Дата производства: " + productionDate);
+        System.out.println("Производитель: " + manufacturer);
+        System.out.println("Страна происхождения: " + countryOfOrigin);
+        System.out.println("Цена: " + price);
+        System.out.println("Состояние бронирования: " + (isReserved ? "Забронирован" : "Не забронирован"));
+        System.out.println();
+    }
+}
+
+class Park {
+    private List<Attraction> attractions;
+    public Park() {
+        attractions = new ArrayList<>();
+    }
+    class Attraction {
+        private String name;
+        private String workingHours;
+        private double price;
+        public Attraction(String name, String workingHours, double price) {
+            this.name = name;
+            this.workingHours = workingHours;
+            this.price = price;
+        }
+        public void displayInfo() {
+            System.out.println("Аттракцион: " + name);
+            System.out.println("Время работы: " + workingHours);
+            System.out.println("Цена: " + price);
+            System.out.println();
+        }
+    }
+    public void addAttraction(String name, String workingHours, double price) {
+        attractions.add(new Attraction(name, workingHours, price));
+    }
+    public void displayAttractions() {
+        for (Attraction attraction : attractions) {
+            attraction.displayInfo();
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Product[] products = new Product[5];
+        products[0] = new Product("Товар 1", "2024-01-01", "Производитель 1", "Страна 1", 10.0, false);
+        products[1] = new Product("Товар 2", "2024-02-01", "Производитель 2", "Страна 2", 20.0, true);
+        products[2] = new Product("Товар 3", "2024-03-01", "Производитель 3", "Страна 3", 30.0, false);
+        products[3] = new Product("Товар 4", "2024-04-01", "Производитель 4", "Страна 4", 40.0, true);
+        products[4] = new Product("Товар 5", "2024-05-01", "Производитель 5", "Страна 5", 50.0, false);
+        System.out.println("Информация о товарах:");
+        for (Product product : products) {
+            product.displayInfo();
+        }
+        Park park = new Park();
+        park.addAttraction("Американские горки", "10:00 - 22:00", 9.0);
+        park.addAttraction("Колесо обозрения", "10:00 - 20:00", 5.0);
+        park.addAttraction("Супер 8", "10:00 - 22:00", 8.0);
+        System.out.println("Информация об аттракционах:");
+        park.displayAttractions();
+    }
+}
