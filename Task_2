@@ -1,0 +1,32 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Map<String, List<String>> phoneBook = new HashMap<>();
+
+        add(phoneBook, "Иванов", "123-456");
+        add(phoneBook, "Иванов", "789-012");
+        add(phoneBook, "Петров", "234-567");
+        add(phoneBook, "Сидоров", "345-678");
+
+        System.out.println("Телефоны для Иванов: " + get(phoneBook, "Иванов"));
+        System.out.println("Телефоны для Петров: " + get(phoneBook, "Петров"));
+        System.out.println("Телефоны для Сидоров: " + get(phoneBook, "Сидоров"));
+        System.out.println("Телефоны для неверной фамилии: " + get(phoneBook, "Неизвестный"));
+
+        System.out.println("\nВсе записи в телефонном справочнике:");
+        printAllEntries(phoneBook);
+    }
+    private static void add(Map<String, List<String>> phoneBook, String lastName, String phoneNumber) {
+        phoneBook.putIfAbsent(lastName, new ArrayList<>());
+        phoneBook.get(lastName).add(phoneNumber);
+    }
+    private static List<String> get(Map<String, List<String>> phoneBook, String lastName) {
+        return phoneBook.getOrDefault(lastName, Collections.emptyList());
+    }
+    private static void printAllEntries(Map<String, List<String>> phoneBook) {
+        for (Map.Entry<String, List<String>> entry : phoneBook.entrySet()) {
+            System.out.println("Фамилия: " + entry.getKey() + ", Телефоны: " + entry.getValue());
+        }
+    }
+}
