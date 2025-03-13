@@ -1,0 +1,60 @@
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        List<Map<String, Object>> students = new ArrayList<>();
+
+        addStudent(students, "Саша", "А101", 1, Arrays.asList(3, 4, 5));
+        addStudent(students, "Маша", "А102", 1, Arrays.asList(2, 3, 2));
+        addStudent(students, "Даша", "А101", 2, Arrays.asList(5, 5, 4));
+        addStudent(students, "Гриша", "А102", 2, Arrays.asList(1, 2, 1));
+
+        System.out.println("Студенты до удаления:");
+        printStudentsByCourse(students, 1);
+        printStudentsByCourse(students, 2);
+
+        removeLowAchievers(students);
+        System.out.println("Студенты после удаления:");
+        printStudentsByCourse(students, 1);
+        printStudentsByCourse(students, 2);
+
+        promoteStudents(students);
+        System.out.println("Студенты после перевода на следующий курс:");
+        printStudentsByCourse(students, 2);
+    }
+
+    public static void addStudent(List<Map<String, Object>> students, String name,
+                                  String group, int course, List<Integer> grades) {
+        Map<String, Object> student = new HashMap<>();
+        student.put("name", name);
+        student.put("group", group);
+        student.put("course", course);
+        student.put("grades", grades);
+        students.add(student);
+    }
+    public static void removeLowAchievers(List<Map<String, Object>> students) {
+        students.removeIf(student -> getAverageGrade((List<Integer>) student.get("grades")) < 3);
+    }
+    public static void promoteStudents(List<Map<String, Object>> students) {
+        for (Map<String, Object> student : students) {
+            if (getAverageGrade((List<Integer>) student.get("grades")) >= 3) {
+                student.put("course", (int) student.get("course") + 1);
+            }
+        }
+    }
+    public static double getAverageGrade(List<Integer> grades) {
+        if (grades.isEmpty()) return 0;
+        double sum = 0;
+        for (int grade : grades) {
+            sum += grade;
+        }
+        return sum / grades.size();
+    }
+    public static void printStudentsByCourse(List<Map<String, Object>> students, int course) {
+        System.out.println("Студенты курса " + course + ":");
+        for (Map<String, Object> student : students) {
+            if ((int) student.get("course") == course) {
+                System.out.println(student.get("name"));
+            }
+        }
+    }
+}
