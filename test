@@ -1,0 +1,40 @@
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class MainTest {
+
+    @Test
+    public void testFactorial() {
+        assertEquals(1, Factorial.computeFactorial(0));
+        assertEquals(1, Factorial.computeFactorial(1));
+        assertEquals(2, Factorial.computeFactorial(2));
+        assertEquals(6, Factorial.computeFactorial(3));
+        assertEquals(24, Factorial.computeFactorial(4));
+        assertThrows(IllegalArgumentException.class, () -> Factorial.computeFactorial(-1));
+    }
+
+    @Test
+    public void testTriangleArea() {
+        assertEquals(0, TriangleArea.computeArea(0, 0));
+        assertEquals(10, TriangleArea.computeArea(4, 5));
+        assertEquals(50, TriangleArea.computeArea(20, 5));
+        assertThrows(IllegalArgumentException.class, () -> TriangleArea.computeArea(-1, 5));
+        assertThrows(IllegalArgumentException.class, () -> TriangleArea.computeArea(4, -2));
+    }
+
+    @Test
+    public void testArithmeticOperations() {
+        assertEquals(5, ArithmeticOperations.add(2, 3));
+        assertEquals(1, ArithmeticOperations.subtract(3, 2));
+        assertEquals(6, ArithmeticOperations.multiply(2, 3));
+        assertEquals(2.0, ArithmeticOperations.divide(6, 3));
+        assertThrows(ArithmeticException.class, () -> ArithmeticOperations.divide(1, 0));
+    }
+
+    @Test
+    public void testCompareNumbers() {
+        assertEquals("5 больше 3", CompareNumbers.compare(5, 3));
+        assertEquals("3 меньше 5", CompareNumbers.compare(3, 5));
+        assertEquals("4 равно 4", CompareNumbers.compare(4, 4));
+    }
+}
