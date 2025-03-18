@@ -1,0 +1,57 @@
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class MainTest {
+    @Test
+    public void testFactorialPositive() {
+        Assert.assertEquals(Main.factorial(5), 120);
+    }
+    @Test
+    public void testFactorialZero() {
+        Assert.assertEquals(Main.factorial(0), 1); 
+    }
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testFactorialNegative() {
+        Main.factorial(-1); 
+    }
+    @Test
+    public void testCalculateArea() {
+        Assert.assertEquals(Main.calculateArea(4, 5), 10.0); 
+    }
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void testCalculateAreaInvalidInput() {
+        Main.calculateArea(-1, 5); 
+    }
+    @Test
+    public void testAdd() {
+        Assert.assertEquals(Main.add(3, 4), 7); 
+    }
+    @Test
+    public void testSubtract() {
+        Assert.assertEquals(Main.subtract(5, 4), 1); 
+    }
+    @Test
+    public void testMultiply() {
+        Assert.assertEquals(Main.multiply(3, 4), 12); 
+    }
+    @Test
+    public void testDivide() {
+        Assert.assertEquals(Main.divide(5, 2), 2.5); 
+    }
+    @Test(expectedExceptions = ArithmeticException.class)
+    public void testDivideByZero() {
+        Main.divide(5, 0); 
+    }
+    @Test
+    public void testCompareGreater() {
+        Assert.assertEquals(Main.compare(5, 3), "greater"); 
+    }
+    @Test
+    public void testCompareLesser() {
+        Assert.assertEquals(Main.compare(3, 5), "lesser");
+    }
+    @Test
+    public void testCompareEqual() {
+        Assert.assertEquals(Main.compare(4, 4), "equal"); 
+    }
+}
