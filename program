@@ -1,34 +1,20 @@
 public class Main {
-    public static void main(String[] args) {
-        System.out.println("Факториал 5: " + Factorial.computeFactorial(5));
-        System.out.println("Площадь треугольника с основанием 10 и высотой 5: " +
-                TriangleArea.computeArea(10, 5));
-        int a = 10, b = 5;
-        System.out.println("Сложение: " + ArithmeticOperations.add(a, b));
-        System.out.println("Вычитание: " + ArithmeticOperations.subtract(a, b));
-        System.out.println("Умножение: " + ArithmeticOperations.multiply(a, b));
-        System.out.println("Деление: " + ArithmeticOperations.divide(a, b));
-        System.out.println(CompareNumbers.compare(a, b));
-    }
-}
-
-class Factorial {
-    public static long computeFactorial(int number) {
-        if (number < 0) throw new IllegalArgumentException("Number must be non-negative.");
+    public static long factorial(int n) {
+        if (n < 0) {
+            throw new IllegalArgumentException("n must be non-negative");
+        }
         long result = 1;
-        for (int i = 1; i <= number; i++) {
+        for (int i = 1; i <= n; i++) {
             result *= i;
         }
         return result;
     }
-}
-class TriangleArea {
-    public static double computeArea(double base, double height) {
-        if (base < 0 || height < 0) throw new IllegalArgumentException("Base and height must be non-negative.");
-        return (base * height) / 2;
+    public static double calculateArea(double base, double height) {
+        if (base <= 0 || height <= 0) {
+            throw new IllegalArgumentException("Base and height must be positive");
+        }
+        return 0.5 * base * height;
     }
-}
-class ArithmeticOperations {
     public static int add(int a, int b) {
         return a + b;
     }
@@ -39,15 +25,30 @@ class ArithmeticOperations {
         return a * b;
     }
     public static double divide(int a, int b) {
-        if (b == 0) throw new ArithmeticException("Division by zero.");
+        if (b == 0) {
+            throw new ArithmeticException("Division by zero");
+        }
         return (double) a / b;
     }
-}
-class CompareNumbers {
     public static String compare(int a, int b) {
-        if (a > b) return a + " больше " + b;
-        else if (a < b) return a + " меньше " + b;
-        else return a + " равно " + b;
+        if (a > b) {
+            return "greater";
+        } else if (a < b) {
+            return "lesser";
+        } else {
+            return "equal";
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Factorial of 5: " + factorial(5)); 
+        System.out.println("Area of triangle with base 4 and height 5: " + calculateArea(4, 5)); 
+        System.out.println("Addition of 3 and 4: " + add(3, 4)); 
+        System.out.println("Subtraction of 5 and 4: " + subtract(5, 4)); 
+        System.out.println("Multiplication of 3 and 4: " + multiply(3, 4)); 
+        System.out.println("Division of 5 by 2: " + divide(5, 2)); 
+        System.out.println("Comparing 5 and 3: " + compare(5, 3)); 
+        System.out.println("Comparing 3 and 5: " + compare(3, 5)); 
+        System.out.println("Comparing 4 and 4: " + compare(4, 4)); 
     }
 }
-
