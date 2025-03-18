@@ -2,39 +2,57 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MainTest {
-
     @Test
-    public void testFactorial() {
-        assertEquals(1, Factorial.computeFactorial(0));
-        assertEquals(1, Factorial.computeFactorial(1));
-        assertEquals(2, Factorial.computeFactorial(2));
-        assertEquals(6, Factorial.computeFactorial(3));
-        assertEquals(24, Factorial.computeFactorial(4));
-        assertThrows(IllegalArgumentException.class, () -> Factorial.computeFactorial(-1));
+    public void testFactorialPositive() {
+        assertEquals(120, Main.factorial(5)); // 5! = 120
+    }
+    @Test
+    public void testFactorialZero() {
+        assertEquals(1, Main.factorial(0)); // 0! = 1
+    }
+    @Test
+    public void testFactorialNegative() {
+        assertThrows(IllegalArgumentException.class, () -> Main.factorial(-1)); // Отрицательное число
+    }
+    @Test
+    public void testCalculateArea() {
+        assertEquals(10.0, Main.calculateArea(4, 5)); // Площадь = 0.5 * 4 * 5 = 10.0
+    }
+    @Test
+    public void testCalculateAreaInvalidInput() {
+        assertThrows(IllegalArgumentException.class, () -> Main.calculateArea(-1, 5)); // Отрицательные значения
+    }
+    @Test
+    public void testAdd() {
+        assertEquals(7, Main.add(3, 4)); // 3 + 4 = 7
+    }
+    @Test
+    public void testSubtract() {
+        assertEquals(1, Main.subtract(5, 4)); // 5 - 4 = 1
+    }
+    @Test
+    public void testMultiply() {
+        assertEquals(12, Main.multiply(3, 4)); // 3 * 4 = 12
     }
 
     @Test
-    public void testTriangleArea() {
-        assertEquals(0, TriangleArea.computeArea(0, 0));
-        assertEquals(10, TriangleArea.computeArea(4, 5));
-        assertEquals(50, TriangleArea.computeArea(20, 5));
-        assertThrows(IllegalArgumentException.class, () -> TriangleArea.computeArea(-1, 5));
-        assertThrows(IllegalArgumentException.class, () -> TriangleArea.computeArea(4, -2));
+    public void testDivide() {
+        assertEquals(2.5, Main.divide(5, 2)); // 5 / 2 = 2.5
     }
-
     @Test
-    public void testArithmeticOperations() {
-        assertEquals(5, ArithmeticOperations.add(2, 3));
-        assertEquals(1, ArithmeticOperations.subtract(3, 2));
-        assertEquals(6, ArithmeticOperations.multiply(2, 3));
-        assertEquals(2.0, ArithmeticOperations.divide(6, 3));
-        assertThrows(ArithmeticException.class, () -> ArithmeticOperations.divide(1, 0));
+    public void testDivideByZero() {
+        assertThrows(ArithmeticException.class, () -> Main.divide(5, 0)); // Деление на ноль
     }
-
     @Test
-    public void testCompareNumbers() {
-        assertEquals("5 больше 3", CompareNumbers.compare(5, 3));
-        assertEquals("3 меньше 5", CompareNumbers.compare(3, 5));
-        assertEquals("4 равно 4", CompareNumbers.compare(4, 4));
+    public void testCompareGreater() {
+        assertEquals("greater", Main.compare(5, 3)); // 5 > 3
+    }
+    @Test
+    public void testCompareLesser() {
+        assertEquals("lesser", Main.compare(3, 5)); // 3 < 5
+    }
+    @Test
+    public void testCompareEqual() {
+        assertEquals("equal", Main.compare(4, 4)); // 4 == 4
     }
 }
